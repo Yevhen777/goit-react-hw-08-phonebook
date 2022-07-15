@@ -1,0 +1,56 @@
+.form {
+  padding-left: 10px;
+  border: 1px solid rgb(3, 3, 3);
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+.button {
+  background-color: white;
+  width: 100px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 1px solid rgb(189, 192, 189);
+  height: 18px;
+}
+
+.input {
+  border: 1px solid rgb(189, 192, 189);
+  height: 18px;
+}
+.input:focus {
+  border: 3px solid rgb(32, 219, 233);
+  border-radius: 5px;
+  color: rgb(2, 10, 10);
+  outline: none;
+}
+.btn {
+  cursor: pointer;
+  background-color: white;
+  width: 50px;
+  border-radius: 5px;
+
+  margin-left: 15px;
+  border: 1px solid rgb(189, 192, 189);
+  height: 18px;
+}
+.btn:hover {
+  background-color: rgb(45, 15, 177);
+  border-radius: 5px;
+  color: rgb(2, 10, 10);
+  outline: none;
+}
+
+.addContact {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.allForm {
+  padding-left: 20px;
+}
+
+.error {
+  color: red;
+}
