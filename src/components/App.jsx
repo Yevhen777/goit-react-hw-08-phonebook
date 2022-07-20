@@ -24,9 +24,9 @@ export class App extends Component {
     const contact = localStorage.getItem('contacts');
     console.log(contact);
     const parse = JSON.parse(contact);
-    console.log(parse);
+    console.log('parse', parse);
     if (parse) {
-      this.setState({ contact: parse });
+      this.setState({ contacts: parse });
     }
   }
 
