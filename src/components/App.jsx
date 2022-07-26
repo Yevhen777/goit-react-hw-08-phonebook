@@ -22,9 +22,8 @@ export class App extends Component {
   componentDidMount() {
     console.log('Монтирование');
     const contact = localStorage.getItem('contacts');
-    console.log(contact);
     const parse = JSON.parse(contact);
-    console.log('parse', parse);
+
     if (parse) {
       this.setState({ contacts: parse });
     }
