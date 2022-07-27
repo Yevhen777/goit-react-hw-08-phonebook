@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
+
 import PropTypes from 'prop-types';
 import style from './ContactForm.module.css';
 
@@ -6,104 +7,85 @@ import { ContactForm } from 'components/ContactForm';
 import { Filter } from 'components/Filter';
 import { ContactList } from 'components/ContactList';
 
-export class App extends Component {
-  state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
-    name: '',
-    number: '',
-    filter: '',
-  };
+export function App() {
+  const [contacts, setContacts] = useState([]);
+  const [name] = useState('');
+  const [number] = useState('');
+  const [filter, setFilter] = useState('');
 
-  componentDidMount() {
-    console.log('Монтирование');
+  useEffect(() => {
     const contact = localStorage.getItem('contacts');
     const parse = JSON.parse(contact);
+    console.log('parse :>> ', parse);
 
     if (parse) {
-      this.setState({ contacts: parse });
+      setContacts(parse);
     }
-  }
+  }, []);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-  handleSubmit = (evt, actions) => {
-    if (this.state.contacts.find(el => el.name === evt.name)) {
+  const handleSubmit = (evt, actions) => {
+    if (contacts.find(el => el.name === evt.name)) {
       alert(`${evt.name} is already in contacs`);
       actions.resetForm();
       return;
     }
 
-    const contactInput = {
-      id: evt.name,
-      name: evt.name,
-      number: evt.number,
-    };
-    const newContact = [...this.state.contacts, contactInput];
+    setContacts(prevState => {
+      const contactInput = {
+        id: evt.name,
+        name: evt.name,
+        number: evt.number,
+      };
+      const newContact = [...prevState, contactInput];
 
-    this.setState({ contacts: newContact });
+      return newContact;
+    });
 
     actions.resetForm();
   };
 
-  reset = () => {
-    this.setState({ name: '', number: '' });
+  const changeFilter = e => {
+    setFilter(e.target.value);
   };
 
-  changeFilter = e => {
-    this.setState({ filter: e.target.value });
-  };
-
-  getVisibleContacts = () => {
-    const filteredArr = this.state.contacts.filter(el =>
-      el.name.toLowerCase().includes(this.state.filter.toLowerCase())
+  const getVisibleContacts = () => {
+    const filteredArr = contacts.filter(el =>
+      el.name.toLowerCase().includes(filter.toLowerCase())
     );
 
     return filteredArr;
   };
-  deleteContact = contactId => {
-    this.setState(preState => ({
-      contacts: preState.contacts.filter(
+  const deleteContact = contactId => {
+    setContacts(prevState => {
+      const filteredContacts = prevState.filter(
         contactEl => contactEl.id !== contactId
-      ),
-    }));
+      );
+      return filteredContacts;
+    });
   };
 
-  render() {
-    const visibleContacts = this.getVisibleContacts();
+  const visibleContacts = getVisibleContacts();
 
-    return (
-      <div className={style.allForm}>
-        <h1>Phonebook</h1>
-        <ContactForm
-          initialValues={this.state}
-          handleSubmit={this.handleSubmit}
-        />
-        <h2>Contacts</h2>
-        <Filter
-          contact={this.state.contacts}
-          filter={this.state.filter}
-          changeFilter={this.changeFilter}
-        />
+  return (
+    <div className={style.allForm}>
+      <h1>Phonebook</h1>
+      <ContactForm
+        initialValues={{ contacts, name, number, filter }}
+        handleSubmit={handleSubmit}
+      />
+      <h2>Contacts</h2>
+      <Filter contact={contacts} filter={filter} changeFilter={changeFilter} />
 
-        <ContactList
-          visibleContacts={visibleContacts}
-          deleteContact={this.deleteContact}
-        />
-      </div>
-    );
-  }
+      <ContactList
+        visibleContacts={visibleContacts}
+        deleteContact={deleteContact}
+      />
+    </div>
+  );
 }
 ContactForm.propTypes = {
   initialValues: PropTypes.object,
