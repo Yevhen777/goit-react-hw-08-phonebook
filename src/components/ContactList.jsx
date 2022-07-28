@@ -12,7 +12,7 @@ export const ContactList = ({ visibleContacts, deleteContact }) => {
               onClick={() => deleteContact(contact.id)}
               type="button"
             >
-              Delete
+              Delete1
             </button>
           </li>
         );
