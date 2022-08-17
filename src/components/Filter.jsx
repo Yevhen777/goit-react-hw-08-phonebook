@@ -1,6 +1,6 @@
 import style from './ContactForm.module.css';
-
 import { nanoid } from 'nanoid';
+
 export const Filter = ({ filter, changeFilter }) => {
   return (
     <>

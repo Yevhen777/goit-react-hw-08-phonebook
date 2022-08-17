@@ -1,6 +1,11 @@
 import { nanoid } from 'nanoid';
 import style from './ContactForm.module.css';
-export const ContactList = ({ visibleContacts, deleteContact }) => {
+import { deleteContact } from '../redux/store';
+import { useDispatch } from 'react-redux';
+
+export const ContactList = ({ visibleContacts }) => {
+  const dispatch = useDispatch();
+
   return (
     <ul>
       {visibleContacts.map(contact => {
@@ -9,10 +14,10 @@ export const ContactList = ({ visibleContacts, deleteContact }) => {
             {contact.name}: {contact.number}
             <button
               className={style.btn}
-              onClick={() => deleteContact(contact.id)}
+              onClick={() => dispatch(deleteContact(contact.id))}
               type="button"
             >
-              Delete2
+              Delete
             </button>
           </li>
         );
