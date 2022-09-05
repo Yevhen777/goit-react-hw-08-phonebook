@@ -10,6 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { authSlice } from '../redux/authSlice';
 
 export const counterSlice = createSlice({
   name: 'user',
@@ -42,12 +43,14 @@ const persistConfig = {
 };
 const persistContactReducer = persistReducer(
   persistConfig,
-  counterSlice.reducer
+  authSlice.reducer
+  // counterSlice.reducer
 );
 
 export const store = configureStore({
   reducer: {
     myContacts: persistContactReducer,
+    auth: authSlice.reducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
