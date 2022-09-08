@@ -14,37 +14,6 @@ import { authSlice } from '../redux/authSlice';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 
-// import { logIn } from '../redux/requestUser';
-
-// export const counterSlice = createSlice({
-//   name: 'user',
-//   initialState: {
-//     items: [],
-//     filter: '',
-//   },
-//   reducers: {
-//     addContact(state, action) {
-//       state.items.push(action.payload);
-//     },
-//     filteredItems(state, action) {
-//       state.filter = action.payload;
-//     },
-//     deleteContact(state, action) {
-//       const filteredContacts = state.items.filter(
-//         contactEl => contactEl.id !== action.payload
-//       );
-//       return { ...state, items: filteredContacts };
-//     },
-//   },
-// });
-
-// export const { addContact, filteredItems, deleteContact } =
-//   counterSlice.actions;
-
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data, params }) => {
@@ -90,25 +59,6 @@ export const contactsApi = createApi({
     }),
   }),
 });
-
-// export const store = configureStore({
-//   reducer: {
-//     [contactsApi.reducerPath]: contactsApi.reducer,
-//   },
-
-//   middleware: getDefaultMiddleware =>
-//     getDefaultMiddleware().concat(contactsApi.middleware),
-// });
-
-// export const {
-//   useGetContactsQuery,
-//   useCreateContactMutation,
-//   useDeleteContactMutation,
-// } = contactsApi;
-
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
 
 const persistConfig = {
   key: 'root',
