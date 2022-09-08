@@ -5,12 +5,19 @@ import { NotFound } from './NotFound';
 import { UserMenu } from './UserMenu';
 import { Routes, Route, Link } from 'react-router-dom';
 import style from './ContactForm.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchCurrentUser } from '../redux/requestUser';
 // import { PrivateRoute } from '../pages/PrivateRoute';
 // import { PublicRoute } from '../pages/PublicRoute';
 
 export function App() {
-  const isLoggin = useSelector(state => state.auth.logginIn);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
   return (
     <div>
       <header className={style.header}>
@@ -25,7 +32,7 @@ export function App() {
             Login
           </Link>
         </nav>
-        {isLoggin && <UserMenu />}
+        {isLoggedIn && <UserMenu />}
       </header>
 
       <div>

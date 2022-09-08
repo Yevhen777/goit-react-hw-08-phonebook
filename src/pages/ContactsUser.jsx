@@ -4,19 +4,24 @@ import style from '../components/ContactForm.module.css';
 import { ContactForm } from 'components/ContactForm';
 import { Filter } from 'components/Filter';
 import { ContactList } from 'components/ContactList';
-import { addContact, filteredItems } from '../redux/store';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useGetContactsQuery, useCreateContactMutation } from '../redux/store';
 
 export const ContactsUser = () => {
   const [name] = useState('');
   const [number] = useState('');
+  const [filter, setFilter] = useState('');
 
-  const dispatch = useDispatch();
-  const items = useSelector(state => state.myContacts.items);
-  const filter = useSelector(state => state.myContacts.filter);
+  const { data: items } = useGetContactsQuery();
 
-  const handleSubmit = (evt, actions) => {
-    if (items.find(el => el.name === evt.name)) {
+  const [createContact] = useCreateContactMutation();
+
+  // const dispatch = useDispatch();
+  // const items = useSelector(state => state.myContacts.items);
+  // const filter = useSelector(state => state.myContacts.filter);
+
+  const handleSubmit = async (evt, actions) => {
+    if (await items.find(el => el.name === evt.name)) {
       alert(`${evt.name} is already in contacs`);
       actions.resetForm();
 
@@ -24,24 +29,35 @@ export const ContactsUser = () => {
     }
 
     const contactInput = {
-      id: evt.name,
+      // id: evt.name,
       name: evt.name,
       number: evt.number,
     };
 
-    dispatch(addContact(contactInput));
+    await createContact(contactInput);
+
+    // dispatch(addContact(contactInput));
 
     actions.resetForm();
   };
 
   const changeFilter = e => {
-    dispatch(filteredItems(e.target.value));
+    setFilter(e);
   };
 
+  // const changeFilter = e => {
+  //   dispatch(filteredItems(e.target.value));
+  // };
+
   const getVisibleContacts = () => {
-    const filteredArr = items.filter(el =>
-      el.name.toLowerCase().includes(filter.toLowerCase())
-    );
+    let filteredArr;
+    if (items) {
+      filteredArr = items.filter(el =>
+        el.name.toLowerCase().includes(filter.toLowerCase())
+      );
+    } else {
+      filteredArr = items;
+    }
 
     return filteredArr;
   };
@@ -58,7 +74,8 @@ export const ContactsUser = () => {
         <h2>Contacts</h2>
         <Filter contact={items} filter={filter} changeFilter={changeFilter} />
 
-        <ContactList visibleContacts={visibleContacts} />
+        {/* <ContactList visibleContacts={visibleContacts} /> */}
+        {items && <ContactList visibleContacts={visibleContacts} />}
       </div>
     </>
   );
@@ -76,6 +93,6 @@ Filter.propTypes = {
 };
 
 ContactList.propTypes = {
-  visibleContacts: PropTypes.array,
+  // visibleContacts: PropTypes.array,
   deleteContact: PropTypes.func,
 };
