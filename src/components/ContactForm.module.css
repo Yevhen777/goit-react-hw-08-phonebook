@@ -1,3 +1,89 @@
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.12);
+  margin-right: 20px;
+}
+.logouteLabel {
+  margin-right: 10px;
+}
+.logouteForm {
+  margin-right: 30px;
+}
+.active {
+  width: 100%;
+
+  padding: 10px;
+
+  border-radius: 4px;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  padding-left: 20px;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  padding-left: 20px;
+}
+.registerLabel {
+  margin-bottom: 10px;
+}
+.registerButton {
+  background-color: white;
+  width: 100px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 1px solid rgb(189, 192, 189);
+  height: 18px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+}
+.registerButton:hover {
+  color: white;
+  background-color: blue;
+}
+
+.registerInput {
+  margin-left: 5px;
+}
+.registerInputName {
+  margin-left: 28px;
+}
+.registerInputName:focus {
+  border: 3px solid rgb(202, 195, 92);
+  border-radius: 5px;
+  color: rgb(2, 10, 10);
+  outline: none;
+}
+.registerInputEmail {
+  margin-left: 33px;
+}
+.registerInputEmail:focus {
+  border: 3px solid rgb(202, 195, 92);
+  border-radius: 5px;
+  color: rgb(2, 10, 10);
+  outline: none;
+}
+.registerInput:focus {
+  border: 3px solid rgb(202, 195, 92);
+  border-radius: 5px;
+  color: rgb(2, 10, 10);
+  outline: none;
+}
 .form {
   padding-left: 10px;
   border: 1px solid rgb(3, 3, 3);

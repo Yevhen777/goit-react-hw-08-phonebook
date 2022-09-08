@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { register } from '../redux/requestUser';
+import style from '../components/ContactForm.module.css';
 
 export const RegisterUser = () => {
   const dispatch = useDispatch();
@@ -31,10 +32,11 @@ export const RegisterUser = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="user">
+      <form className={style.registerForm} onSubmit={handleSubmit}>
+        <label className={style.registerLabel} htmlFor="user">
           Name
           <input
+            className={style.registerInputName}
             type="text"
             id="name"
             name="name"
@@ -43,9 +45,10 @@ export const RegisterUser = () => {
           />
         </label>
 
-        <label htmlFor="email">
+        <label className={style.registerLabel} htmlFor="email">
           Email
           <input
+            className={style.registerInputEmail}
             type="text"
             id="email"
             name="email"
@@ -54,9 +57,10 @@ export const RegisterUser = () => {
           />
         </label>
 
-        <label htmlFor="password">
+        <label className={style.registerLabel} htmlFor="password">
           Password
           <input
+            className={style.registerInput}
             type="text"
             id="password"
             name="password"
@@ -65,7 +69,7 @@ export const RegisterUser = () => {
           />
         </label>
 
-        <button>Register</button>
+        <button className={style.registerButton}>Register</button>
       </form>
     </div>
   );
