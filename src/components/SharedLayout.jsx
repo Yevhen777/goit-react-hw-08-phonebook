@@ -14,7 +14,7 @@ export const SharedLayout = () => {
           <Link className={style.active} to="/">
             Contact
           </Link>
-          <Link className={style.active} to="/register">
+          <Link className={style.active} to="/registration">
             Register
           </Link>
           <Link className={style.active} to="/login">

@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import { fetchCurrentUser } from '../redux/requestUser';
 import { lazy } from 'react';
 import { SharedLayout } from './SharedLayout';
-// import PrivateRoute from '../pages/PrivateRoute';
-// import { PublicRoute } from '../pages/PublicRoute';
+import PrivateRoute from '../pages/PrivateRoute';
+import PublicRoute from '../pages/PublicRoute';
 
 const ContactsUser = lazy(() => import('../pages/ContactsUser'));
 const RegisterUser = lazy(() => import('../pages/RegisterUser'));
@@ -22,23 +22,35 @@ export function App() {
     <div>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<ContactsUser />} />
-          <Route path="/register" element={<RegisterUser />} />
-          <Route path="/login" element={<LoginUser />} />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsUser />} />
+            }
+          />
 
-          {/* <PrivateRoute path="/contact">
-            <ContactsUser />
-          </PrivateRoute> */}
-          {/* 
-          <PublicRoute path="/register" restricted>
-            <RegisterUser />
-          </PublicRoute>
-
-          <PublicRoute path="/login" restricted>
-            <LoginUser />
-          </PublicRoute> */}
+          <Route
+            path="/registration"
+            element={
+              <PublicRoute
+                restricted
+                redirectTo="/contacts"
+                component={<RegisterUser />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute
+                restricted
+                redirectTo="/contacts"
+                component={<LoginUser />}
+              />
+            }
+          />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
