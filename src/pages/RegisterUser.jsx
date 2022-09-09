@@ -3,7 +3,7 @@ import { register } from '../redux/requestUser';
 import style from '../components/ContactForm.module.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-export const RegisterUser = () => {
+const RegisterUser = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (e, actions) => {
@@ -74,3 +74,5 @@ export const RegisterUser = () => {
     </div>
   );
 };
+
+export default RegisterUser;

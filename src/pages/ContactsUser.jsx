@@ -7,7 +7,7 @@ import { ContactList } from 'components/ContactList';
 
 import { useGetContactsQuery, useCreateContactMutation } from '../redux/store';
 
-export const ContactsUser = () => {
+const ContactsUser = () => {
   const [name] = useState('');
   const [number] = useState('');
   const [filter, setFilter] = useState('');
@@ -15,10 +15,6 @@ export const ContactsUser = () => {
   const { data: items } = useGetContactsQuery();
 
   const [createContact] = useCreateContactMutation();
-
-  // const dispatch = useDispatch();
-  // const items = useSelector(state => state.myContacts.items);
-  // const filter = useSelector(state => state.myContacts.filter);
 
   const handleSubmit = async (evt, actions) => {
     if (await items.find(el => el.name === evt.name)) {
@@ -88,3 +84,5 @@ ContactList.propTypes = {
   // visibleContacts: PropTypes.array,
   deleteContact: PropTypes.func,
 };
+
+export default ContactsUser;

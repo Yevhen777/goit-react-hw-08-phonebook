@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import style from '../components/ContactForm.module.css';
 
-export const LoginUser = () => {
+const LoginUser = () => {
   const dispatch = useDispatch();
   const isLoggin = useSelector(state => state.auth.isLoggedIn);
   console.log(isLoggin);
@@ -63,3 +63,5 @@ export const LoginUser = () => {
     </div>
   );
 };
+
+export default LoginUser;

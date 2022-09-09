@@ -8,8 +8,6 @@ export const ContactList = ({ visibleContacts }) => {
 
   const { data } = useGetContactsQuery();
 
-  console.log('data :>> ', visibleContacts);
-
   return (
     <ul>
       {data && (
