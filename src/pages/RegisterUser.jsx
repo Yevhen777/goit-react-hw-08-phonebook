@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-// import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { register } from '../redux/requestUser';
 import style from '../components/ContactForm.module.css';
@@ -7,16 +5,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export const RegisterUser = () => {
   const dispatch = useDispatch();
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
 
   const handleSubmit = (e, actions) => {
     console.log(e);
     dispatch(register(e));
-    // setName('');
-    // setEmail('');
-    // setPassword('');
+
     actions.resetForm();
   };
 

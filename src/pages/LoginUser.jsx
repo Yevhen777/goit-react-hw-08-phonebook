@@ -1,4 +1,3 @@
-import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../redux/requestUser';
 import { useState } from 'react';
@@ -8,16 +7,13 @@ import style from '../components/ContactForm.module.css';
 
 export const LoginUser = () => {
   const dispatch = useDispatch();
-  const isLoggin = useSelector(state => state.auth.logginIn);
+  const isLoggin = useSelector(state => state.auth.isLoggedIn);
   console.log(isLoggin);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = e => {
-    console.log('e :>> ', e);
-    console.log('email :>> ', email);
-    console.log('password :>> ', password);
     e.preventDefault();
     dispatch(logIn({ email, password }));
 
@@ -64,7 +60,6 @@ export const LoginUser = () => {
 
         <button className={style.registerButton}>Log in</button>
       </form>
-      <Outlet />
     </div>
   );
 };

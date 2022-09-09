@@ -103,6 +103,21 @@
   border: 1px solid rgb(189, 192, 189);
   height: 18px;
 }
+.logOutButton {
+  margin-left: 10px;
+  margin-right: 10px;
+  outline: none;
+  border: 1px solid rgb(189, 192, 189);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.logOutWrap {
+  padding-right: 20px;
+}
+.logOutButton:hover {
+  color: white;
+  background-color: blue;
+}
 
 .input {
   border: 1px solid rgb(189, 192, 189);

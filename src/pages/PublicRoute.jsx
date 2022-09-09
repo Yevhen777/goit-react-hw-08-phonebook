@@ -6,7 +6,7 @@
 //   restricted = false,
 //   ...routeProps
 // }) => {
-//   const isLoggin = useSelector(state => state.auth.logginIn);
+//   const isLoggin = useSelector(state => state.auth.isLoggedIn);
 //   const redirect = isLoggin && restricted;
 //   return (
 //     <Route {...routeProps}>{redirect ? <Redirect to="/" /> : children}</Route>

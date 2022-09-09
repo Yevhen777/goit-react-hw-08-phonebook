@@ -8,7 +8,7 @@ import style from './ContactForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from '../redux/requestUser';
-// import { PrivateRoute } from '../pages/PrivateRoute';
+// import PrivateRoute from '../pages/PrivateRoute';
 // import { PublicRoute } from '../pages/PublicRoute';
 
 export function App() {

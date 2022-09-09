@@ -29,14 +29,11 @@ export const ContactsUser = () => {
     }
 
     const contactInput = {
-      // id: evt.name,
       name: evt.name,
       number: evt.number,
     };
 
     await createContact(contactInput);
-
-    // dispatch(addContact(contactInput));
 
     actions.resetForm();
   };
@@ -44,10 +41,6 @@ export const ContactsUser = () => {
   const changeFilter = e => {
     setFilter(e);
   };
-
-  // const changeFilter = e => {
-  //   dispatch(filteredItems(e.target.value));
-  // };
 
   const getVisibleContacts = () => {
     let filteredArr;
@@ -74,7 +67,6 @@ export const ContactsUser = () => {
         <h2>Contacts</h2>
         <Filter contact={items} filter={filter} changeFilter={changeFilter} />
 
-        {/* <ContactList visibleContacts={visibleContacts} /> */}
         {items && <ContactList visibleContacts={visibleContacts} />}
       </div>
     </>
