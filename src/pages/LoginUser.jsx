@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from '../redux/requestUser';
 import { useState } from 'react';
-
 import { useSelector } from 'react-redux';
 import style from '../components/ContactForm.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginUser = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,12 @@ const LoginUser = () => {
 
     setEmail('');
     setPassword('');
+    if (e.target.elements.password.value.trim() === '') {
+      toast('Please enter a password!');
+      return;
+    } else if (e.target.elements.email.value.trim() === '') {
+      toast('Please enter your email!');
+    }
   };
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -50,7 +57,7 @@ const LoginUser = () => {
           Password
           <input
             className={style.registerInput}
-            type="text"
+            type="password"
             id="password"
             name="password"
             value={password}
@@ -60,6 +67,7 @@ const LoginUser = () => {
 
         <button className={style.registerButton}>Log in</button>
       </form>
+      <ToastContainer autoClose={5000} />
     </div>
   );
 };

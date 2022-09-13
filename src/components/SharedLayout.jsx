@@ -23,6 +23,7 @@ export const SharedLayout = () => {
         </nav>
         {isLoggedIn && <UserMenu />}
       </header>
+
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>

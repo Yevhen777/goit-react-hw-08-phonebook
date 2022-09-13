@@ -7,7 +7,6 @@ const RegisterUser = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (e, actions) => {
-    console.log(e);
     dispatch(register(e));
 
     actions.resetForm();
